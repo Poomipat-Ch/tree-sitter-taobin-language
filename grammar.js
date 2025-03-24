@@ -13,7 +13,7 @@ module.exports = grammar({
   rules: {
     source_file: ($) => $._main,
 
-    _main: ($) => repeat(choice($._tag_block, $._statement)),
+    _main: ($) => repeat1(choice($._tag_block, $._statement)),
 
     _tag_block: ($) =>
       seq(

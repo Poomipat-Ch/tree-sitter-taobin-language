@@ -3,20 +3,11 @@
   "name": "taobin_language",
   "rules": {
     "source_file": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_tag_block"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_statement"
-        }
-      ]
+      "type": "SYMBOL",
+      "name": "_main"
     },
     "_main": {
-      "type": "REPEAT",
+      "type": "REPEAT1",
       "content": {
         "type": "CHOICE",
         "members": [
