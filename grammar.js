@@ -11,15 +11,13 @@ module.exports = grammar({
   name: "taobin_language",
 
   rules: {
-    source_file: ($) => $._main,
-
-    _main: ($) => repeat1(choice($._tag_block, $._statement)),
+    source_file: ($) => choice($._tag_block, repeat($._statement)),
 
     _tag_block: ($) =>
       seq(
         field("tag_open", /<\w+>/),
-        repeat($._statement),
-        field("tag_close", /<\/w+>/),
+        repeat(choice($._statement, $._tag_block)),
+        field("tag_close", /<\/\w+>/),
       ),
 
     _statement: ($) =>

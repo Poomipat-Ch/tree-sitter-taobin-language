@@ -3,24 +3,20 @@
   "name": "taobin_language",
   "rules": {
     "source_file": {
-      "type": "SYMBOL",
-      "name": "_main"
-    },
-    "_main": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SYMBOL",
-            "name": "_tag_block"
-          },
-          {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_tag_block"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
             "type": "SYMBOL",
             "name": "_statement"
           }
-        ]
-      }
+        }
+      ]
     },
     "_tag_block": {
       "type": "SEQ",
@@ -36,8 +32,17 @@
         {
           "type": "REPEAT",
           "content": {
-            "type": "SYMBOL",
-            "name": "_statement"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "_statement"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_tag_block"
+              }
+            ]
           }
         },
         {
@@ -45,7 +50,7 @@
           "name": "tag_close",
           "content": {
             "type": "PATTERN",
-            "value": "<\\/w+>"
+            "value": "<\\/\\w+>"
           }
         }
       ]
